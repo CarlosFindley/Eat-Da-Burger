@@ -4,6 +4,7 @@
 // ==============================================================================
 var express = require("express");
 var exphbs = require("express-handlebars");
+var methodOverride = require("method-override");
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -20,21 +21,28 @@ var PORT = process.env.PORT || 8080;
 // ==============================================================================
 // Use the express.static middleware to serve static content for the app from the "public" directory
 // ==============================================================================
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "./public"));
 
 // ==============================================================================
 // Sets up the app to handle data parsing
 // ==============================================================================
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
+// ==============================================================================
+// to use _method
+// ==============================================================================
+app.use(methodOverride("_method"));
+
+// ==============================================================================
 // Set Handlebars as the default templating engine.
+// ==============================================================================
 app.engine("handlebars", exphbs({
-    defaultLayout: "main"
+	defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller.js");
+ 
+var routes = require("./controllers/burger_controller.js");
 app.use("/", routes);
 
 app.listen(PORT, function() {
