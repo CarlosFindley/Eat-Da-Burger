@@ -12,16 +12,16 @@ router.get("/", function(req, res) {
 	});
   });
 
-  router.post('/', function(req, res) {
-		burger.new('burger_name', req.body.burger, function(data) {
-			res.redirect('/');
+  router.post("/", function(req, res) {
+		burger.new("burger_name", req.body.burger, function(data) {
+			res.redirect("/");
 			console.log(req.body.burger);
 		});
 	});
 
-	router.put('/', function(req, res) {
-		burger.devour('devoured', 1, 'id', req.body.id, function(data) {
-			res.redirect('/');
+	router.put("/", function(req, res) {
+		burger.devour("devoured", 1, "id", req.body.id, function(data) {
+			res.redirect("/");
 		});
 	});
 
